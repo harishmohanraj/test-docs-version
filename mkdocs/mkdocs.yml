@@ -100,4 +100,6 @@ extra_javascript:
 - https://polyfill.io/v3/polyfill.min.js?features=es6
 - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 extra:
+  version:
+    provider: mike
   social_image: "https://opengraph.githubassets.com/1678794508.941911/harishmohanraj/test-docs-version"
