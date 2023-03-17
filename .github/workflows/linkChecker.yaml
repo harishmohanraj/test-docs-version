@@ -6,28 +6,27 @@ on:
     types: [completed]
 
 jobs:
-  broken-link-checker:
-    on-success:
-      name: Check broken links
-      runs-on: ubuntu-latest
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
-      steps:
-        - name: Get GH Pages URL
-          id: gh_pages_url
-          uses: actions/github-script@v5
-          with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            script: |
-              let result = await github.request('GET /repos/:owner/:repo/pages', {
-                owner: context.repo.owner,
-                repo: context.repo.repo
-              });
-              console.log(result.data.html_url);
-              return result.data.html_url
-            result-encoding: string
+  on-success:
+    name: Check broken links
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Get GH Pages URL
+        id: gh_pages_url
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            let result = await github.request('GET /repos/:owner/:repo/pages', {
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            console.log(result.data.html_url);
+            return result.data.html_url
+          result-encoding: string
 
-        - name: Check broken links
-          uses: ruzickap/action-my-broken-link-checker@v2
-          with:
-            url: ${{ steps.gh_pages_url.outputs.result }}
-            cmd_params: '--buffer-size=8192 --max-connections=10 --color=always --header="User-Agent:curl/7.54.0" --timeout=20'
+      - name: Check broken links
+        uses: ruzickap/action-my-broken-link-checker@v2
+        with:
+          url: ${{ steps.gh_pages_url.outputs.result }}
+          cmd_params: '--buffer-size=8192 --max-connections=10 --color=always --header="User-Agent:curl/7.54.0" --timeout=20'
