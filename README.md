@@ -6,6 +6,18 @@ test-docs-version
 This file will become your README and also the index of your
 documentation.
 
+===
+
+This is a link to symbol:
+[`test_docs_version.core.foo`](https://harishmohanraj.github.io/test-docs-version/core.html#foo)
+and
+[`foo`](https://harishmohanraj.github.io/test-docs-version/core.html#foo)
+
+This is a link to invalid symbol:
+[\[`test_docs_version.core.foo`\](https://harishmohanraj.github.io/test-docs-version/core.html#foo)](https://harishmohanraj.github.io/test-docs-version/0.0.1rc11/api/test_docs_version/core/foo/#test_docs_version.core.foo)
+
+===
+
 ## Install
 
 ``` sh
